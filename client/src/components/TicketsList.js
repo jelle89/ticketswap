@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-// import CreateEventFormContainer from './CreateEventFormContainer'
+// import CreateTicketFormContainer from './CreateTicketFormContainer'
 
 
 
@@ -17,7 +17,6 @@ render() {
       ))}
         
       </ul>
-      {/* <CreateEventFormContainer /> */}
       { !this.props.tickets && <li>Loading tickets...</li> }
     </div>
     )

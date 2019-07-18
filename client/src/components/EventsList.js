@@ -11,7 +11,7 @@ render() {
       <ul>
       
       { this.props.events && this.props.events.map(event => (
-          <li key={event.id}><Link to={`/events/${event.id}`}> <p>{ event.name }</p> <p>{ event.description } <img src={event.picture} alt="img" /></p></Link></li>
+          <li key={event.id}><Link to={`/events/${event.id}`}> <p>{ event.name }</p> <p>{ event.description } </p> <p><img src={event.picture} alt="img" /></p></Link></li>
       ))}
         
       </ul>

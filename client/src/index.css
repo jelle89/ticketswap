@@ -17,7 +17,7 @@ code {
 
 li {
   background: lightpink;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 input[type=text], select {
   width: 10%;
@@ -40,15 +40,15 @@ input[type=submit] {
   cursor: pointer;
 }
 
+img {
+  width: 400px;
+}
 
 div {
   border-radius: 5px;
   padding: 20px;
 }
 
-ul {
- 
-}
 
 /* unvisited link */
 a:link {
