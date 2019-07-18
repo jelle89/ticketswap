@@ -24,7 +24,7 @@ router.get('/events/:id', (req, res, next) => {
 console.log("ticket id:", req.params)
   
   Ticket
-  .findAll({where: {eventId: 5 }})
+  .findAll({where: {eventId: req.params.id }})
     .then(ticket => {
       res
         .status(200)
