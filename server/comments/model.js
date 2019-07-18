@@ -5,24 +5,31 @@ const User = require('../users/model')
 
 const Comment = sequelize.define('Comment', {
   text: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   author: {
     type: Sequelize.STRING
+  },
+  ticketId: {
+    type: Sequelize.INTEGER
   }
 }, {
     timestamps: false,
     tableName: 'comments'
   })
 
-  Comment.associate = function(models) {
-    Comment.belongsTo(Ticket, {
-      foreignKey: 'ticket_id',
-      as: 'tickets'
-    })
-    Comment.belongsTo(User, {
-      foreignKey: 'user_id',
-      as: 'users'
-    })
-  } 
+  Comment.belongsTo(User)
+  Comment.belongsTo(Ticket)
+  // Comment.belongsTo(Ticket)
+
+  // Comment.associate = function(models) {
+  //   Comment.belongsTo(Ticket, {
+  //     foreignKey: 'ticketId',
+  //     as: 'tickets'
+  //   })
+  //   Comment.belongsTo(User, {
+  //     foreignKey: 'userId',
+  //     as: 'users'
+  //   })
+  // } 
 module.exports = Comment

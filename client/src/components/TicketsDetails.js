@@ -1,23 +1,19 @@
 import React from 'react'
-import TicketForm from './TicketForm'
+import {Link} from 'react-router-dom'
+// import TicketForm from './TicketForm'
 
 export default function TicketDetails(props) {
   if (!props.ticket) return 'Loading ticket data...'
-  
+  console.log("render of ticketdetails", props)
   return (
     <div>
-      {props.editMode && <TicketForm onSubmit={props.onSubmit} onChange={props.onChange} values={props.formValues} />}
-      
-      {!props.editMode && <div>
-        <h1>{props.ticket.name}</h1>
-        
-        <i>Price: {props.ticket.price}</i>
-        
-        <p>{props.ticket.description}</p>
+        <li>Price: {props.ticket.price}</li>
+        <li>Description: {props.ticket.description}</li>
+        <li>Author: {props.ticket.author}</li>
         
         <button onClick={props.onDelete}>Delete</button>
         <button onClick={props.onEdit}>Edit</button>
-      </div>}
+        <Link to="/">Back to the homepage</Link>
     </div>
   )
 }

@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const User = require("./model");
 const bcrypt = require("bcrypt");
+const auth = require('../login/authmw')
 
 const router = new Router();
 
-router.post("/users", (req, res, next) => {
+router.post("/users",  (req, res, next) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) {
       return res.status(500).json({
@@ -33,7 +34,9 @@ router.post("/users", (req, res, next) => {
     }
   });
 
-  router.get("/users", (req, res, next) => {
+  router.get("/users",  (req, res, next) => {
+    // console.log("aut", auth)
+    console.log("try to login.")
     User.findAll()
       .then(users => {
         res.send({ users });

@@ -2,6 +2,7 @@ import React from 'react';
 
 
 export default function EventForm(props) {
+  console.log('what are the props', props)
     return (<form onSubmit={props.onSubmit}>
       <label>
         Name:
@@ -16,11 +17,6 @@ export default function EventForm(props) {
       <label>
         Description:
         <input type="text" name="description" onChange={props.onChange} value={props.values.description} />
-      </label>
-
-      <label>
-        eventId:
-        <input type="text" name="eventId" onChange={props.onChange} value={props.values.eventId} />
       </label>
       
       <button type="submit">Save</button>

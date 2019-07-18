@@ -7,8 +7,7 @@ class CreateEventFormContainer extends React.Component {
   state = {
     name: "",
     picture: "",
-    description: "",
-    eventId: ""
+    description: ""
   };
 
   onChange = event => {
@@ -23,8 +22,7 @@ class CreateEventFormContainer extends React.Component {
     this.setState({
       name: "",
       picture: "",
-      description: "",
-      eventId: ""
+      description: ""
     });
   };
 

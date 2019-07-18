@@ -2,18 +2,20 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const jsonParser = bodyParser.json();
+const loginRoutes = require("./login/login")
 const userRoutes = require("./users/routes");
 const eventRoutes = require("./events/routes");
 const ticketRoutes = require("./tickets/routes");
 const commentRoutes = require("./comments/routes");
+
 const app = express();
 
 
 app.use(cors());
 app.use(jsonParser);
+app.use(loginRoutes);
 app.use(userRoutes);
 app.use(eventRoutes);
-
 app.use(ticketRoutes);
 app.use(commentRoutes);
 

@@ -13,7 +13,7 @@ render() {
       <ul>
       
       { this.props.tickets && this.props.tickets.map(ticket => (
-          <li key={ticket.id}><Link to={`/events/${ticket.id}/tickets`}> <p>{ ticket.price }</p> <p>{ ticket.description } </p></Link></li>
+          <li key={ticket.id}><Link to={`/ticketdetails/${ticket.id}`}> <p>Price in Euro: { ticket.price }</p> <p>Description: { ticket.description } </p></Link></li>
       ))}
         
       </ul>

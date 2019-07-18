@@ -17,12 +17,9 @@ const Event = require("../events/model")
 //       next(err);
 //     });
 // });
-router.get('/events/:id', (req, res, next) => {
-  console.log('hello')
-  
-// 
-console.log("ticket id:", req.params)
-  
+router.get('/tickets/:id', (req, res, next) => {
+  console.log('hello from GET tickets id',req.params.id)
+   
   Ticket
   .findAll({where: {eventId: req.params.id }})
     .then(ticket => {
@@ -31,6 +28,20 @@ console.log("ticket id:", req.params)
         .send(ticket)
     }).catch(next)
 })
+
+
+router.get('/ticketdetails/:id', (req, res, next) => {
+  console.log('hello from GET tickets specific ticket id',req.params.id)
+   
+  Ticket
+  .findOne({where: {id: req.params.id }})
+    .then(ticket => {
+      res
+        .status(200)
+        .send(ticket)
+    }).catch(next)
+})
+
 
 router.post('/events/:id', function (req, res,next) {
   const ticket = {

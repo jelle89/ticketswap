@@ -3,8 +3,8 @@ const sequelize = require("../db");
 const User = require("../users/model");
 const Ticket = require('../tickets/model');
 
-const Event = sequelize.define(
-  "Event",
+const Events = sequelize.define(
+  "events",
   {
     name: {
       type: Sequelize.STRING,
@@ -32,6 +32,8 @@ const Event = sequelize.define(
   }
 );
 
-Event.belongsTo(User);
-Event.hasMany(Ticket)
-module.exports = Event;
+Events.belongsTo(User)
+
+
+//Event.hasMany(Ticket)
+module.exports = Events;

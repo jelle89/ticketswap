@@ -18,6 +18,7 @@ render() {
       <CreateEventFormContainer />
       { !this.props.events && <li>Loading events...</li> }
     </div>
+    
     )
     
   }

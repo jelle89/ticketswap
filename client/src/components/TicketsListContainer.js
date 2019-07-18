@@ -2,6 +2,7 @@ import React from 'react'
 import {loadTicket} from '../actions/tickets'
 import {connect} from 'react-redux'
 import TicketsList from './TicketsList'
+import CommentContainer from './CommentContainer'
 
 
 
@@ -9,7 +10,8 @@ class TicketsListContainer extends React.Component {
   
   
   componentDidMount() {
-    this.props.loadTicket()
+    
+    this.props.loadTicket(this.props.match.params.id)
   }
  
   
