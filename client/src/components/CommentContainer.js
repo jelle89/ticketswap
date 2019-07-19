@@ -1,10 +1,7 @@
 import React from "react";
 
 export default function CommentContainer(props) {
-  
-  
-  if (!props) return '......' 
-    return (
+  return (
     <form onSubmit={props.onSubmit}>
       <label>
         Comment:

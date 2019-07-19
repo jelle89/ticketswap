@@ -5,7 +5,7 @@ import {
   loadTicket,
   updateTicket,
   loadTicketDetails,
-  deleteTicket,
+  deleteTicket
 } from "../actions/tickets";
 import { submitComment, loadComments } from "../actions/comments";
 import CommentContainer from "./CommentContainer";
@@ -20,7 +20,7 @@ class TicketsDetailsContainer extends React.Component {
   componentDidMount() {
     console.log("compo did mount", Number(this.props.match.params.id));
     this.props.loadTicketDetails(Number(this.props.match.params.id));
-    this.props.loadComments(this.props.match.params.id)
+    this.props.loadComments(this.props.match.params.id);
   }
 
   onDelete = () => {
@@ -63,7 +63,7 @@ class TicketsDetailsContainer extends React.Component {
     console.log("render of ticketDetaislCOnt", this.props);
     const { match, ticket } = this.props;
     if (!this.props.ticket) return "......";
-   
+
     return (
       <div>
         {" "}
@@ -97,5 +97,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { loadTicket, loadTicketDetails, loadComments, deleteTicket, updateTicket, submitComment }
+  {
+    loadTicket,
+    loadTicketDetails,
+    loadComments,
+    deleteTicket,
+    updateTicket,
+    submitComment
+  }
 )(TicketsDetailsContainer);

@@ -8,7 +8,7 @@ import {
 } from "../actions/tickets";
 
 export default (state = null, action = {}) => {
-  console.log("reducers", state, "action", action)
+  console.log("reducers", state, "action", action);
   switch (action.type) {
     case TICKETS_FETCHED:
       return action.tickets;

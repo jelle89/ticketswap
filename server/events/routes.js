@@ -1,19 +1,18 @@
 const express = require("express");
 const Event = require("./model.js");
 const router = express.Router();
-const Ticket = require('../tickets/model')
+const Ticket = require("../tickets/model");
 
-router.get('/events/', function (req, res, next) {
-  console.log("body", req.body)
-  Event
-      .findAll()
-      .then(event => {res.json({ events: event })})
-      .catch(next)
-})
-
+router.get("/events/", function(req, res, next) {
+  console.log("body", req.body);
+  Event.findAll()
+    .then(event => {
+      res.json({ events: event });
+    })
+    .catch(next);
+});
 
 router.post("/events/", function(req, res, next) {
-   
   const event = {
     name: req.body.name,
     description: req.body.description,
@@ -27,7 +26,6 @@ router.post("/events/", function(req, res, next) {
       next(err);
     });
 });
-
 
 router.delete("/events/", function(req, res, next) {
   Event.destroy({
