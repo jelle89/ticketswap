@@ -10,6 +10,7 @@ import LoginContainer from "./components/LoginContainer";
 
 class App extends Component {
   render() {
+    console.log(this.props,'does my app.js have props')
     return (
       <Provider store={store}>
         <div>
