@@ -14,16 +14,16 @@ export default class TicketsList extends Component {
             {this.props.tickets &&
               this.props.tickets.map(ticket => {
                 
-                const ticketHourOfCreation= (new Date(ticket.createdAt)).getHours();
-                let risk = 50;
-                console.log(' asdfasdfdasdfsadfsadf', new Date(ticket.createdAt).getHours());
-                if (ticketHourOfCreation < 9 ) {
-                  risk += 10;
-                } else if (ticketHourOfCreation > 17 ) {
-                  risk += 10;
-                } else {
-                  risk -= 10;
-                }
+                // const ticketHourOfCreation= (new Date(ticket.createdAt)).getHours();
+                // let risk = 50;
+                // console.log(' asdfasdfdasdfsadfsadf', new Date(ticket.createdAt).getHours());
+                // if (ticketHourOfCreation < 9 ) {
+                //   risk += 10;
+                // } else if (ticketHourOfCreation > 17 ) {
+                //   risk += 10;
+                // } else {
+                //   risk -= 10;
+                // }
              
 
                 return (
@@ -33,9 +33,9 @@ export default class TicketsList extends Component {
                       <p>Price in Euro: {ticket.price}</p>{" "}
                       <p>Description: {ticket.description} </p>
                     </Link>
-                    <span>
+                    {/* <span>
                       We calculated that the risk of this ticket being a fraud is {risk}%
-                    </span>
+                    </span> */}
                   </li>
               )
             }

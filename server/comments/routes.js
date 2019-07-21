@@ -5,9 +5,9 @@ const router = express.Router();
 router.post("/comments", function(req, res, next) {
   console.log("comment post ", req.body);
   const comment = {
-    text: req.body.text,
+    text: req.body.data.text,
     author: req.body.author,
-    ticketId: req.params.id
+    ticketId: req.body.id
   };
 
   console.log("try to create", comment);

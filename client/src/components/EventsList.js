@@ -4,6 +4,7 @@ import CreateEventFormContainer from "./CreateEventFormContainer";
 import Login from "./Login"
 
 export default class EventsList extends Component {
+  
   render() {
     console.log('hallootjes wat is de state?', this.state)
     console.log('hallootjes wat zijn de props?', this.props)

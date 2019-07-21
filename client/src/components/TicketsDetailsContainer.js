@@ -14,7 +14,8 @@ import DrawComments from "./DrawComments";
 class TicketsDetailsContainer extends React.Component {
   state = {
     editMode: false,
-    formValues: { text: "Add comment", author: "Someone" }
+    formValues: { text: "Add comment", 
+                  author: "Someone" }
   };
 
   componentDidMount() {
@@ -37,6 +38,7 @@ class TicketsDetailsContainer extends React.Component {
         description: this.props.ticket.description,
         author: this.props.ticket.author,
         text: this.props.comment.text
+        
       }
     });
   };

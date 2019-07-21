@@ -70,7 +70,7 @@ export const loadTicketDetails = ticketId => dispatch => {
   console.log("LoadtIcketdetails", ticketId);
   request(`${baseUrl}/ticketdetails/${ticketId}`)
     .then(response => {
-      console.log("response?", response.body);
+      console.log("response?", response.body.risk);
       dispatch(ticketDetailFetched(response.body));
     })
     .catch(console.error);

@@ -9,6 +9,8 @@ export default function TicketDetails(props) {
       <li>Price: {props.ticket.price}</li>
       <li>Description: {props.ticket.description}</li>
       <li>Author: {props.ticket.author}</li>
+      <li>Risk: {props.ticket.risk}</li>
+
 
       <button onClick={props.onDelete}>Delete</button>
       <button onClick={props.onEdit}>Edit</button>
