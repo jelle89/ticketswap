@@ -8,7 +8,9 @@ export default class EventsList extends Component {
   render() {
     console.log('hallootjes wat is de state?', this.state)
     console.log('hallootjes wat zijn de props?', this.props)
+    
     return (
+      
       <div>
         <ul>
           {this.props.events &&
@@ -25,6 +27,7 @@ export default class EventsList extends Component {
             ))}
         </ul>
         <CreateEventFormContainer />
+        {}
         <Login />
         {!this.props.events && <li>Loading events...</li>}
       </div>

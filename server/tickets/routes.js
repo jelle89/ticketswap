@@ -68,12 +68,12 @@ router.get("/ticketdetails/:id", (req, res, next) => {
             });
             const reducer = (accumulator, currentValue) =>
               accumulator + currentValue;
-            totaal = pricelist.reduce(reducer,0);
-          
-            if (totaal != 0){
+            totaal = pricelist.reduce(reducer, 0);
+
+            if (totaal != 0) {
               averagePrice = totaal / pricelist.length;
-            }else{
-              averagePrice = 0
+            } else {
+              averagePrice = 0;
             }
             console.log(averagePrice, "Average Price");
             console.log("totaal", totaal);
@@ -82,72 +82,86 @@ router.get("/ticketdetails/:id", (req, res, next) => {
 
             //const reducer = (accumulator, currentValue) => accumulator + currentValue;
             //console.log(listOfTickets.rows.reduce(reducer));
-          
+
             //console.log('listOfTicketS?', listOfTickets.rows.dataValues.price)
             //console.log('listOfTicketS?', listOfTickets.rows[2].dataValues.price)
             return totaal;
           })
           .then(totaal => {
             console.log(totaal, "again totaal ");
-           return Ticket.findOne({ where: { id: req.params.id } })
-              .then(priceOneTicket => {
+            return Ticket.findOne({ where: { id: req.params.id } }).then(
+              priceOneTicket => {
                 console.log("priceOneTicket", priceOneTicket.dataValues.price);
                 priceOneTicket.dataValues.price;
-                
-              const priceOneTicketCalc = priceOneTicket.dataValues.price;
-              if( totaal != 0) {
-                if (priceOneTicketCalc < averagePrice) {
-                  riskAddedByAverage = 100 - (priceOneTicketCalc / averagePrice) * 100;
-                  console.log(riskAddedByAverage, ('ticket is goedkoper, dus risk hoger'))
-                } else if (priceOneTicketCalc > averagePrice) {
-                  riskAddedByAverage =
-                    -(100 - (averagePrice / priceOneTicketCalc) * 100)
-                    console.log(riskAddedByAverage, ('ticket is duurder, dus risk lager'))
-                    if (riskAddedByAverage < -10) riskAddedByAverage = -10
+
+                const priceOneTicketCalc = priceOneTicket.dataValues.price;
+                if (totaal != 0) {
+                  if (priceOneTicketCalc < averagePrice) {
+                    riskAddedByAverage =
+                      100 - (priceOneTicketCalc / averagePrice) * 100;
+                    console.log(
+                      riskAddedByAverage,
+                      "ticket is goedkoper, dus risk hoger"
+                    );
+                  } else if (priceOneTicketCalc > averagePrice) {
+                    riskAddedByAverage = -(
+                      100 -
+                      (averagePrice / priceOneTicketCalc) * 100
+                    );
+                    console.log(
+                      riskAddedByAverage,
+                      "ticket is duurder, dus risk lager"
+                    );
+                    if (riskAddedByAverage < -10) riskAddedByAverage = -10;
+                  }
+                } else {
+                  riskAddedByAverage = 0;
                 }
-              }else{
-                riskAddedByAverage = 0
+
+                const riskTotal = riskAddedByComments + riskAddedByAverage;
+                console.log(
+                  riskAddedByComments,
+                  "riskAddedByComments+timecreatedat"
+                );
+                console.log(
+                  riskAddedByAverage,
+                  "riskaddedbyaverage99999999999"
+                );
+                console.log(riskTotal, "riskaddedbytotal99999999999");
+
+                return riskTotal;
               }
-
-              const riskTotal =  riskAddedByComments + riskAddedByAverage
-              console.log(riskAddedByComments, "riskAddedByComments+timecreatedat");
-              console.log(riskAddedByAverage, "riskaddedbyaverage99999999999");
-              console.log(riskTotal, "riskaddedbytotal99999999999");
-
-              return riskTotal;
-          });
-          
-        }).then(riskTotal => {
-          console.log(riskTotal, "totalrisk")
-          return Ticket.findOne({ where: { id: req.params.id }})
-          .then(ticketsPerAuthor => {
-            console.log(ticketsPerAuthor.dataValues.author, 'ticketsperauthor authorrrrrr')
-            return Ticket.findAndCountAll({where: {author : ticketsPerAuthor.dataValues.author}})
-            .then(ticketsWithAuthor => {
-
-              console.log("wat is bla?", ticketsWithAuthor.count)
-              
-
-              if(ticketsWithAuthor.count < 2) {
-               riskTotal += 10
-               
-              }
-              console.log(riskTotal, 'riskaddedbyauthor')
-              return riskTotal
-            
-            })
+            );
           })
-        })
-        
-       
+          .then(riskTotal => {
+            console.log(riskTotal, "totalrisk");
+            return Ticket.findOne({ where: { id: req.params.id } }).then(
+              ticketsPerAuthor => {
+                console.log(
+                  ticketsPerAuthor.dataValues.author,
+                  "ticketsperauthor authorrrrrr"
+                );
+                return Ticket.findAndCountAll({
+                  where: { author: ticketsPerAuthor.dataValues.author }
+                }).then(ticketsWithAuthor => {
+                  console.log("wat is bla?", ticketsWithAuthor.count);
+
+                  if (ticketsWithAuthor.count < 2) {
+                    riskTotal += 10;
+                  }
+                  console.log(riskTotal, "riskaddedbyauthor");
+                  return riskTotal;
+                });
+              }
+            );
+          });
       })
-     
 
       .then(value => {
         let number = Math.min(Math.max(parseInt(value), 5), 95);
         console.log("can ik make frontend calc here?(with limited )", number);
         //console.log("can ik make frontend calc here? risk by comm" , riskAddedByComments)
-        
+
         let ticketwrisk = {
           price: ticket.dataValues.price,
           description: ticket.dataValues.description,
@@ -160,7 +174,6 @@ router.get("/ticketdetails/:id", (req, res, next) => {
         };
 
         return ticketwrisk;
-      
       })
 
       .then(ticket => {
@@ -168,8 +181,6 @@ router.get("/ticketdetails/:id", (req, res, next) => {
       })
       .catch(next);
   });
-
-
 });
 
 router.post("/events/:id", function(req, res, next) {

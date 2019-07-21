@@ -26,18 +26,4 @@ function auth(req, res, next) {
   }
 }
 
-
-function userId(req, res, next) {
-  const auth = req.headers.authorization && req.headers.authorization.split(' ')
-  if (auth && auth[0] === 'Bearer' && auth[1]) {
-    
-      const data = toData(auth[1])
-      console.log("auth check")
-      console.log("auth check"+data.userId)
-      return data.userId;
-     
-  }
-}
-
-
 module.exports = auth;
