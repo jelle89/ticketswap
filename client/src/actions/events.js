@@ -36,8 +36,10 @@ const eventCreateSuccess = event => ({
 export const createEvent = data => dispatch => {
   request
     .post(`${baseUrl}/events`)
+    .set('Authorization', 'Bearer ' + localStorage.getItem("token"))
     .send(data)
     .then(response => {
+      console.log("response?event", response.body)
       dispatch(eventCreateSuccess(response.body));
     })
     .catch(console.error);

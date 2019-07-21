@@ -21,9 +21,6 @@ const Events = sequelize.define(
     },
     end: {
       type: Sequelize.STRING
-    },
-    eventId: {
-      type: Sequelize.INTEGER
     }
   },
   {
@@ -32,7 +29,6 @@ const Events = sequelize.define(
   }
 );
 
-Events.belongsTo(User);
-
+Events.belongsTo(User)
 //Event.hasMany(Ticket)
 module.exports = Events;

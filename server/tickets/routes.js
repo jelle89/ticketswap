@@ -3,8 +3,8 @@ const Ticket = require("./model.js");
 const router = express.Router();
 const Event = require("../events/model");
 
-router.get("/tickets/:id", (req, res, next) => {
-  console.log("hello from GET tickets id", req.params.id);
+router.get("/events/:id", (req, res, next) => {
+  console.log("testing", req.params.id);
 
   Ticket.findAll({ where: { eventId: req.params.id } })
     .then(ticket => {
@@ -14,7 +14,7 @@ router.get("/tickets/:id", (req, res, next) => {
 });
 
 router.get("/ticketdetails/:id", (req, res, next) => {
-  console.log("hello from GET tickets specific ticket id", req.params.id);
+  console.log("test", req.params.id);
 
   Ticket.findOne({ where: { id: req.params.id } })
     .then(ticket => {

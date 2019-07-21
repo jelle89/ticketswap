@@ -2,17 +2,25 @@ const express = require("express");
 const Event = require("./model.js");
 const router = express.Router();
 const Ticket = require("../tickets/model");
+const auth = require('../login/middleware')
 
-router.get("/events/", function(req, res, next) {
+router.get("/events", function(req, res, next) {
   console.log("body", req.body);
-  Event.findAll()
-    .then(event => {
-      res.json({ events: event });
+  const limit = req.query.limit = 9
+  const offset = req.query.offset = 0
+  Event.count()
+    .then(total =>
+      Event
+    .findAll({limit, offset})
+    .then(events => {
+      let page = Math.ceil(total/limit);
+      res.json({ events, total, page });
     })
-    .catch(next);
-});
+    .catch(next))
+})
+;
 
-router.post("/events/", function(req, res, next) {
+router.post("/events", auth, function(req, res, next) {
   const event = {
     name: req.body.name,
     description: req.body.description,

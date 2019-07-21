@@ -9,8 +9,9 @@ class TicketsListContainer extends React.Component {
   }
 
   render() {
-    console.log("doetiehet", this.props.tickets);
-    if (!this.props.tickets) return "loading";
+    console.log("doetiehet", this.props.tickets)
+    console.log("zijnerprops?", this.props);
+    if (!this.props.tickets) return "losssading";
     return <TicketsList tickets={this.props.tickets} />;
   }
 }

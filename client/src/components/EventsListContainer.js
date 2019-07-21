@@ -9,7 +9,7 @@ class EventsListContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.events) return "loading";
+    if (!this.props.events) return "loasssding";
     return <EventsList events={this.props.events.events} />;
   }
 }

@@ -38,19 +38,17 @@ const ticketCreateSuccess = ticket => ({
   ticket
 });
 
-export const createTicket = id => dispatch => {
+export const createTicket = (eventId, ticket) => dispatch => {
   request
-    .post(`${baseUrl}/events/${id}`)
-    .send(id)
+    .post(`${baseUrl}/events/${eventId}`)
+    .send(ticket)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body));
     })
     .catch(console.error);
 };
 
-export const loadTickets = id => (dispatch, getState) => {
-  if (getState().tickets) return;
-
+export const loadTickets = id => dispatch => {
   request(`${baseUrl}/events/${id}`)
     .then(response => {
       dispatch(ticketsFetched(response.body));
@@ -58,9 +56,9 @@ export const loadTickets = id => (dispatch, getState) => {
     .catch(console.error);
 };
 
-export const loadTicket = ticketId => dispatch => {
-  console.log("LoadtIcket", ticketId);
-  request(`${baseUrl}/tickets/${ticketId}`)
+export const loadTicket = (id) => (dispatch, getState) => {
+  console.log("LoadtIcket???",id);
+  request(`${baseUrl}/events/${id}`)
     .then(response => {
       console.log("response?", response.body);
       dispatch(ticketFetched(response.body));

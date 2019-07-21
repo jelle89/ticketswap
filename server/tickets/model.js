@@ -20,6 +20,9 @@ const Ticket = sequelize.define(
     },
     eventId: {
       type: Sequelize.INTEGER
+    },
+    risk: {
+      type: Sequelize.INTEGER
     }
   },
   {

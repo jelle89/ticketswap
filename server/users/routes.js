@@ -1,11 +1,11 @@
 const { Router } = require("express");
 const User = require("./model");
 const bcrypt = require("bcrypt");
-const auth = require('../login/authmw')
+const auth = require('../login/middleware')
 
 const router = new Router();
 
-router.post("/users",  (req, res, next) => {
+router.post("/user",  (req, res, next) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) {
       return res.status(500).json({
@@ -34,7 +34,7 @@ router.post("/users",  (req, res, next) => {
     }
   });
 
-  router.get("/users",  (req, res, next) => {
+  router.get("/user",  (req, res, next) => {
     // console.log("aut", auth)
     console.log("try to login.")
     User.findAll()
@@ -44,7 +44,7 @@ router.post("/users",  (req, res, next) => {
       .catch(error => next(error));
   });
 
-  router.get("/users/:id", (req, res, next) => {
+  router.get("/user/:id", (req, res, next) => {
     User.findByPk(req.params.id)
       .then(user => {
         res.send({ name: user.name });

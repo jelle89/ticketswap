@@ -16,8 +16,8 @@ const commentsAdded = comments => ({
 });
 
 export const submitComment = (id, formValues) => dispatch => {
-  console.log("actrion smc ", id);
-  console.log("actrion smc ", formValues);
+  console.log("action smc ", id);
+  console.log("action smc ", formValues);
   request
     .post(`${baseUrl}/comments`)
     .send({ id: id, data: formValues })
