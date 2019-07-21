@@ -23,7 +23,6 @@ export default class EventsList extends Component {
               </li>
             ))}
         </ul>
-        
         <CreateEventFormContainer />
         <Login />
         {!this.props.events && <li>Loading events...</li>}
