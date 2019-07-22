@@ -28,15 +28,12 @@ class SignUp extends Component {
   componentDidUpdate() {}
 
   render() {
-    if (this.props.signupResult.email) {
-      return <Redirect to="/login" />;
-    }
     return (
       <main id="main">
         <div className="newUser">
           <form id="newUser">
 
-            <label id="name"> name </label>
+            <label id="name"> Name </label>
             <input
               name="name"
               type="text"
@@ -45,7 +42,7 @@ class SignUp extends Component {
               id="usernameField"
             />
 
-            <label id="email"> email: </label>
+            <label id="email"> Email </label>
             <input
               name="email"
               type="text"
@@ -54,7 +51,7 @@ class SignUp extends Component {
               id="usernameField"
             />
 
-            <label id="password"> password: </label>
+            <label id="password"> Password </label>
             <input
               name="password"
               type="text"
@@ -63,7 +60,7 @@ class SignUp extends Component {
               id="passwordField"
             />
 
-            <label> email: </label>
+            <label> Sign up </label>
             <input
               id="submitNewUser"
               type="submit"
